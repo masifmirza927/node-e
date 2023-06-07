@@ -15,13 +15,13 @@ const fs = require("fs");
 
 //  file system module fs
     // creating new file
-    // fs.writeFile("sample.txt", "this is my first file", (error) => {
+    // fs.writeFile("sample.txt", "<h1>hello world</h1>", (error) => {
     //     if(error) {
     //         console.log(error)
     //     }else {
     //         console.log("successfully created");
     //     }
-    // })
+    // });
 
 // reading files
     // const content =  fs.readFileSync("./sample.txt", "utf-8");
@@ -33,6 +33,6 @@ const fs = require("fs");
 //    });
 
 // creating directory/folder
-fs.mkdir("./files", () => {
-    console.log("folder created");
-});
+// fs.mkdir("./files", () => {
+//     console.log("folder created");
+// });
