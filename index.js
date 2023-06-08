@@ -1,16 +1,20 @@
-const http = require("http");
+const express = require('express')
+const app = express()
+const port = 3003
 
-const server = http.createServer( (request, response) => {
-    
-    if(request.url == "/") {
-        response.write("this is home page");
-    }else if(request.url == "/about") {
-        response.write("this is about page");
-    }
+app.get('/', (req, res) => {
+  res.send(`
+  <a href="/">Home</a>
+  <a href="/about">About</a>
+    <h1 style="background-color: red;">home page</h1>
+    <p>sample home</p>
+  `)
+})
 
-    response.end();
-});
+app.get('/about', (req, res) => {
+    res.send('about page!')
+  })
 
-server.listen(3001, () => {
-    console.log("server is running...")
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
 })
