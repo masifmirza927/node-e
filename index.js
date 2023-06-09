@@ -11,8 +11,24 @@ app.get("/", (request, response) => {
     category: 'electronic'
 }
    response.json(obj);
-   
 })
+
+app.get("/search", (request, response) => {
+    const queryIndex = request.query.index;
+
+    console.log("index::", queryIndex);
+
+    const fruits = ["apple", "mango", "banana"];
+    const fruit = fruits[queryIndex];
+
+    response.json({
+    status: "OK",
+    fruit: fruit
+  })
+
+  
+});
+
 
 app.listen(3003, () => {
   console.log("server is running");
