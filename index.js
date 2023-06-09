@@ -1,21 +1,21 @@
-const express = require('express')
-const app = express()
-const port = 3003
+const express = require("express");
+const fs = require("fs");
+const app = express();
 
-app.get('/', (req, res) => {
-  res.send(`
-  <a href="/">Home</a>
-  <a href="/about">About</a>
-    <h1 style="background-color: red;">home page</h1>
-    <p>sample home</p>
-  `)
+app.get("/", (request, response) => {
+
+  const htmlContent = fs.readFileSync("./pages/home.html", "utf-8");
+  response.send(htmlContent);
+
 })
 
-app.get('/about', (req, res) => {
-    res.send('about page!')
-  })
+app.get("/about", (request, response) => {
 
-  
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  const htmlContent = fs.readFileSync("./pages/home.html", "utf-8");
+  response.send(htmlContent);
+
+})
+
+app.listen(3003, () => {
+  console.log("server is running");
 })
