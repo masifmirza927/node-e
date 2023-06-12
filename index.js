@@ -9,25 +9,39 @@ app.get("/", (request, response) => {
     description: 'lorem ipsum set',
     image: 'https://i.pravatar.cc',
     category: 'electronic'
-}
-   response.json(obj);
+  }
+  response.json(obj);
 })
 
-app.get("/search", (request, response) => {
-    const queryIndex = request.query.index;
+// app.get("/search", (request, response) => {
+//   const queryIndex = request.query.index;
+//   const fruits = ["apple", "mango", "banana"];
+//   const fruit = fruits[queryIndex];
 
-    console.log("index::", queryIndex);
+//   if(fruit == undefined ) {
+//     response.json({
+//       status: false,
+//     })
+//   }else {
+//     response.json({
+//       status: true,
+//       fruit: fruit
+//     })
+//   }
 
-    const fruits = ["apple", "mango", "banana"];
-    const fruit = fruits[queryIndex];
+// });
 
-    response.json({
-    status: "OK",
-    fruit: fruit
+
+// http://localhost:3003/student/2
+app.get("/student/:id", (request, response) => {
+
+  const id = request.params.id
+
+  response.json({
+    id: id
   })
 
-  
-});
+})
 
 
 app.listen(3003, () => {
