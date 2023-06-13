@@ -39,12 +39,32 @@ app.get("/student/:id", (request, response) => {
 }
  */
 
+const students = [];
 // http://localhost:3003/create-user
 app.post("/create-user", (request, response) => {
     
-    console.log(request.body)
+    console.log(request.body);
+
+    students.push(request.body);
+
+    response.json({
+      students: students
+    });
+
+});
+
+// http://localhost:3003/delete-user/2
+app.delete("/delete-user/:id", (request, response) => {
+    const index = request.params.id;
+
+    students.splice(index, 1);
+
+    response.json({
+      students: students
+    })
 
 })
+
 
 
 
