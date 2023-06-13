@@ -46,16 +46,11 @@ app.get("/student/:id", (request, response) => {
       "email": "nonummy@hotmail.edu",
       "name": "Unity Branch",
       "country": "United Kingdom"
-    },
-    {
-      "email": "sit.amet.faucibus@outlook.com",
-      "name": "Uma Williamson",
-      "country": "Netherlands"
     }
   ];
 
   response.json({
-    id: id
+    result: data[id]
   })
 
 })
