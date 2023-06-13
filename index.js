@@ -2,40 +2,17 @@ const express = require("express");
 const fs = require("fs");
 const app = express();
 
+app.use(express.json())
+
 app.get("/", (request, response) => {
-  const obj = {
-    title: 'test product',
-    price: 13.5,
-    description: 'lorem ipsum set',
-    image: 'https://i.pravatar.cc',
-    category: 'electronic'
-  }
-  response.json(obj);
+  console.log("working...")
 })
-
-// app.get("/search", (request, response) => {
-//   const queryIndex = request.query.index;
-//   const fruits = ["apple", "mango", "banana"];
-//   const fruit = fruits[queryIndex];
-
-//   if(fruit == undefined ) {
-//     response.json({
-//       status: false,
-//     })
-//   }else {
-//     response.json({
-//       status: true,
-//       fruit: fruit
-//     })
-//   }
-
-// });
-
 
 // http://localhost:3003/student/2
 app.get("/student/:id", (request, response) => {
 
   const id = request.params.id
+
   const data = [
     {
       "email": "dictum.placerat.augue@hotmail.net",
@@ -55,7 +32,23 @@ app.get("/student/:id", (request, response) => {
 
 })
 
+/**
+  {
+	"name":"ali",
+	"city" : "Lodhran"
+}
+ */
 
+// http://localhost:3003/create-user
+app.post("/create-user", (request, response) => {
+    
+    console.log(request.body)
+
+})
+
+
+
+// http://localhost:3003/
 app.listen(3003, () => {
   console.log("server is running");
 })
