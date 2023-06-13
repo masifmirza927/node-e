@@ -64,6 +64,25 @@ app.delete("/delete-user/:id", (request, response) => {
     })
 
 })
+// http://localhost:3003/user-get/1
+app.get("/user-get/:id", (request, response) => {
+  const index = request.params.id;
+  response.json({
+    student: students[index]
+  })
+});
+
+// http://localhost:3003/user-update/1
+app.put("/user-update/:id", (request, response) => {
+      const index = request.params.id;
+
+      students[index] = request.body
+
+      response.json({
+        students: students
+      })
+
+})
 
 
 
