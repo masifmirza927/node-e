@@ -6,10 +6,11 @@ const StudentModel = require("./models/StudentModel");
 
 app.use(express.json())
 
-app.get("/student", (request, response) => {
+app.get("/student", async (request, response) => {
 
-        const studentRec = StudentModel.findById('648afcefb64fe6922bcc8f70');
+        const studentRec = await StudentModel.findById('648afcefb64fe6922bcc8f70');
         console.log(studentRec)
+        
 })
 
 
