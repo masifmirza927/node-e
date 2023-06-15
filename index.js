@@ -1,11 +1,16 @@
 const express = require("express");
 const app = express();
 const mongoose = require('mongoose');
+const StudentModel = require("./models/StudentModel");
+
 
 app.use(express.json())
 
+app.get("/student", (request, response) => {
 
-
+        const studentRec = StudentModel.findById('648afcefb64fe6922bcc8f70');
+        console.log(studentRec)
+})
 
 
 
