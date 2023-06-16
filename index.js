@@ -6,11 +6,39 @@ const StudentModel = require("./models/StudentModel");
 
 app.use(express.json())
 
-app.get("/student", async (request, response) => {
+app.get("/students", async (request, response) => {
 
-        const studentRec = await StudentModel.findById('648afcefb64fe6922bcc8f70');
-        console.log(studentRec)
-        
+    try {
+        const students = await StudentModel.find();
+        return response.json({
+            status: true,
+            students: students
+        })
+    } catch (error) {
+        return response.json({
+            status: false,
+            msg: "Students not found"
+        })
+    }
+})
+
+app.post("/student-create", async (request, response) => {
+
+    try {
+        await StudentModel.create(request.body);
+        return response.json({
+            status: true,
+            msg: "Successfully created"
+        })
+    } catch (error) {
+        console.log(error);
+        return response.json({
+            status: false,
+            msg: "something went wrong"
+        })
+    }
+
+
 })
 
 
