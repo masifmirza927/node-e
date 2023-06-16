@@ -3,10 +3,17 @@ const { Schema } = mongoose;
 
 const studentSchema = new Schema({
     name: {
-        type: String
+        type: String,
+        required: [true, "Name is required"],
+        minLength: [3, "Name should be proper"]
     },
     city: {
-        type: String
+        type: String,
+        required: [true, "city is required"],
+        enum: {
+            values: ['Lodhran', 'Bahawalpur'],
+            message: '{VALUE} city is not supported'
+          }
     }
 })
 

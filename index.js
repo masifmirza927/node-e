@@ -23,7 +23,6 @@ app.get("/students", async (request, response) => {
 })
 
 app.post("/student-create", async (request, response) => {
-
     try {
         await StudentModel.create(request.body);
         return response.json({
@@ -31,14 +30,19 @@ app.post("/student-create", async (request, response) => {
             msg: "Successfully created"
         })
     } catch (error) {
-        console.log(error);
-        return response.json({
-            status: false,
-            msg: "something went wrong"
-        })
+        if (error.name === "ValidationError") {
+            let errors = {};
+      
+            Object.keys(error.errors).forEach((key) => {
+              errors[key] = error.errors[key].message;
+            });
+      
+            return response.json({
+              "status": false,
+              errors: errors
+            })
+          }
     }
-
-
 })
 
 
