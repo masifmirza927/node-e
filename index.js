@@ -2,9 +2,17 @@ const express = require("express");
 const app = express();
 const mongoose = require('mongoose');
 const StudentModel = require("./models/StudentModel");
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
 
+// middleware
+app.use(express.json());
 
-app.use(express.json())
+// how to upload file/image
+app.post("/upload-image", upload.single('image'), (request, response) => {
+    console.log(request.body);
+})
+
 
 app.get("/students", async (request, response) => {
 
