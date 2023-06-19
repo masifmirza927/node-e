@@ -3,14 +3,22 @@ const app = express();
 const mongoose = require('mongoose');
 const StudentModel = require("./models/StudentModel");
 const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
+const upload = multer({ dest: './uploads/' })
+const fs = require("fs");
 
 // middleware
 app.use(express.json());
 
 // how to upload file/image
 app.post("/upload-image", upload.single('image'), (request, response) => {
-    console.log(request.body);
+    console.log(request.file);
+    let ext = request.file.mimetype.split("/")[1];
+    if(ext == 'plain') {
+        ext = "txt";
+    }
+    fs.rename(request.file.path, request.file.path + "." + ext, () => {
+        console.log("done")
+    })
 })
 
 
