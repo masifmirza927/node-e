@@ -5,9 +5,11 @@ const StudentModel = require("./models/StudentModel");
 const multer  = require('multer')
 const upload = multer({ dest: './uploads/' })
 const fs = require("fs");
+const cors = require("cors");
 
 // middleware
 app.use(express.json());
+app.use(cors());
 
 // how to upload file/image
 app.post("/upload-image", upload.single('image'), (request, response) => {
@@ -18,7 +20,7 @@ app.post("/upload-image", upload.single('image'), (request, response) => {
     }
     fs.rename(request.file.path, request.file.path + "." + ext, () => {
         console.log("done")
-    })
+    });
 })
 
 
@@ -34,6 +36,22 @@ app.get("/students", async (request, response) => {
         return response.json({
             status: false,
             msg: "Students not found"
+        })
+    }
+})
+
+app.get("/student/:id", async (request, response) => {
+    const id = request.params.id;
+    try {
+        const student = await StudentModel.findById(id);
+        return response.json({
+            status: true,
+            student: student
+        })
+    }catch (error) {
+        return response.json({
+            status: false,
+            message: "Student not found"
         })
     }
 })
