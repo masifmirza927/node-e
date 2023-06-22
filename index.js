@@ -56,8 +56,17 @@ app.get("/student/:id", async (request, response) => {
     }
 })
 
-app.post("/student-create", async (request, response) => {
+app.post("/create-student", upload.single('image'), async (request, response) => {
+   
+    let ext = request.file.mimetype.split("/")[1];
+    const imageName = request.file.path + "." + ext;
+    fs.rename(request.file.path, imageName, () => {
+        console.log("done")
+    });
+
+
     try {
+        request.body.image = imageName;
         await StudentModel.create(request.body);
         return response.json({
             status: true,
