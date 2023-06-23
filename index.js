@@ -12,6 +12,9 @@ const path = require('path');
 app.use(express.json());
 app.use(cors());
 
+require('dotenv').config()
+console.log(process.env.HTTP_PATH)
+
 app.use("/uploads", express.static(path.join(path.resolve(), "uploads")));
 
 // how to upload file/image
