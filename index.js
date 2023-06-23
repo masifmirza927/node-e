@@ -6,10 +6,13 @@ const multer  = require('multer')
 const upload = multer({ dest: './uploads/' })
 const fs = require("fs");
 const cors = require("cors");
+const path = require('path');
 
 // middleware
 app.use(express.json());
 app.use(cors());
+
+app.use("/uploads", express.static(path.join(path.resolve(), "uploads")));
 
 // how to upload file/image
 app.post("/upload-image", upload.single('image'), (request, response) => {
@@ -63,7 +66,6 @@ app.post("/create-student", upload.single('image'), async (request, response) =>
     fs.rename(request.file.path, imageName, () => {
         console.log("done")
     });
-
 
     try {
         request.body.image = imageName;
