@@ -13,7 +13,7 @@ const studentSchema = new Schema({
     },
     address: {
         type: String,
-        required: [true, "city is required"]
+        required: [true, "address is required"]
     },
     about: {
         type: String,

@@ -73,6 +73,15 @@ app.get("/student/:id", async (request, response) => {
 
 app.post("/create-student", upload.single('image'), async (request, response) => {
 
+    if(!request.file) {
+        return response.json({
+            status: false,
+            errors: {
+                image: "Please select image"
+            }
+        })
+    }
+
     let ext = request.file.mimetype.split("/")[1];
     const imageName = request.file.path + "." + ext;
     fs.rename(request.file.path, imageName, () => {
